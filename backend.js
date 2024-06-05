@@ -19,6 +19,10 @@ app.post("/login", (req, res) => {
   });
 });
 
+app.get("/hello", (req, res) => {
+  res.send("Hello World!");
+});
+
 const { Pool } = require("pg");
 const pool = new Pool({
   user: "postgres",
