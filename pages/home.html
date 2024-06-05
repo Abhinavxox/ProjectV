@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../global.style.css" />
+    <title>About us</title>
+  </head>
+  <body>
+    <header>
+      <h1 align="center">Welcome to Pre-paid Energy System</h1>
+    </header>
+    <ul class="navbar">
+      <li class="breadcrumb-item">
+        <a href="./home.html" style="color: #46b1818a">Home</a>
+      </li>
+      <li>
+        <a href="./dashboard.html">Personal Dashboard</a>
+      </li>
+      <li><a href="../index.html">Login</a></li>
+      <li><a href="./aboutus.html">About us</a></li>
+      <li><a href="./recharge.html">Recharge</a></li>
+      <li id="datetime"></li>
+    </ul>
+    <main>
+      <section style="padding: 20px">
+        <h4>Abstract</h4>
+        <p align="justify">
+          The aim of the project is to minimize the queue at the energy meter
+          billing counters and to restrict the usage of energy meters
+          automatically, if the bill is not paid. The energy meter will provide
+          the pulse as long as they have units remaining. With a certain amount
+          fixed per unit, the user can prepay for the number of units they
+          require. The GSM technology is used so that the consumer would receive
+          messages about the consumption of power and if it reaches the minimum
+          amount, it would automatically alert the consumer to recharge.
+        </p>
+
+        <h4>Introduction</h4>
+        <p align="justify">
+          In the present context, electricity has been as important as food to
+          us. Every object or appliance that we use in our daily life is
+          directly operated by electricity. Most of us use electricity
+          unnecessarily as well because we are not monitoring the usage and
+          calculating it properly. When consumers will use the IoT based prepaid
+          energy meter that will monitor their usage and they will be able to
+          see how many units are used and how many units remain unused. As it is
+          a prepaid system, the customers will know how many units can be used.
+          When the number of unit decreases and is about to end, a warning
+          message is sent to the user via GSM module. In the case of
+          non-payment, the supplier can cut off the supply at any time. It is
+          based on the prepaying system and provides the bill after every
+          complete use to the user. <br />
+          <br />In the modern era, particularly within the industrial landscape,
+          a persistent challenge has emerged wherein industries often delay
+          their electricity bill payments, even in the presence of established
+          penalty mechanisms. This issue underscores the necessity for a novel
+          approach that can ensure timely payments. In response to this need,
+          the implementation of a prepaid energy metering system becomes
+          imperative. As a feasible resolution, the integration of an Internet
+          of Things (IoT) based system interconnected to the internet offers a
+          pragmatic solution. This not only facilitates centralized billing but
+          also enhances user convenience by providing real-time insights into
+          energy utilization patterns. Drawing inspiration from these concerns
+          and potential solutions, the present project, titled “Smart Pre-paid
+          Based Energy Meter System,” explores the utilization of Arduino
+          technology to develop an innovative framework addressing these
+          challenges and culminating in a more efficient energy management
+          paradigm.
+        </p>
+        <h4>Objective</h4>
+        <p align="justify">
+          <li>
+            Develop a user friendly pay-before-using system that is reliable to
+            the users.
+          </li>
+          <li>Promote proper usage and monitoring of energy usage.</li>
+        </p>
+      </section>
+    </main>
+    <script>
+      function updateDateTime() {
+        const dateTimeElement = document.getElementById("datetime");
+        const now = new Date();
+
+        const year = now.getFullYear();
+        const month = String(now.getMonth() + 1).padStart(2, "0"); // Months are zero-based
+        const day = String(now.getDate()).padStart(2, "0");
+
+        const hours = String(now.getHours()).padStart(2, "0");
+        const minutes = String(now.getMinutes()).padStart(2, "0");
+        const seconds = String(now.getSeconds()).padStart(2, "0");
+
+        const formattedDate = `${year}-${month}-${day}`;
+        const formattedTime = `${hours}:${minutes}:${seconds}`;
+
+        dateTimeElement.textContent = `${formattedDate} | ${formattedTime}`;
+      }
+
+      setInterval(updateDateTime, 1000);
+      updateDateTime(); // Initial call to display the date and time immediately
+    </script>
+  </body>
+</html>

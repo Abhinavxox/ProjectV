@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pre-paid energy meter using IoT</title>
+    <link rel="stylesheet" href="../global.style.css" />
+  </head>
+  <body onload="checkLogin()">
+    <header>
+      <h1 align="center">Welcome to Pre-paid Energy System</h1>
+    </header>
+    <ul class="navbar">
+      <li class="breadcrumb-item"><a href="./home.html">Home</a></li>
+      <li>
+        <a href="./dashboard.html" style="color: #46b1818a"
+          >Personal Dashboard</a
+        >
+      </li>
+      <li><a href="../index.html">Login</a></li>
+      <li><a href="./aboutus.html">About us</a></li>
+      <li><a href="./recharge.html">Recharge</a></li>
+      <li id="datetime"></li>
+    </ul>
+    <br />
+    <br />
+    <br />
+    <div class="dasboardMain">
+      <h1 class="title">User Dashboard</h1>
+      <br />
+      <div class="dashboardContainer">
+        <h3 class="separtedList">
+          First Name :
+          <span id="firstName"></span>
+        </h3>
+        <h3 class="separtedList">
+          Last Name :
+          <span id="lastName"></span>
+        </h3>
+        <h3 class="separtedList">
+          Email :
+          <span id="email"></span>
+        </h3>
+        <h3 class="separtedList">
+          Phone :
+          <span id="phone"></span>
+        </h3>
+        <h3 class="separtedList">
+          Province :
+          <span id="province"></span>
+        </h3>
+        <h3 class="separtedList">
+          City :
+          <span id="city"></span>
+        </h3>
+        <h3 class="separtedList">
+          Street Number :
+          <span id="streetNumber"></span>
+        </h3>
+        <h3 class="separtedList">
+          Gender :
+          <span id="gender"></span>
+        </h3>
+        <h3 class="separtedList">
+          Amount :
+          <span id="amount"></span>
+        </h3>
+      </div>
+    </div>
+    <script src="../timestamp.js"></script>
+    <script>
+      //function to check if user is already logged in
+      function checkLogin() {
+        const user = localStorage.getItem("user");
+        if (user) {
+          const beforeLogin = document.getElementById("beforeLogin");
+          const afterLogin = document.getElementById("afterLogin");
+
+          const userObj = JSON.parse(user);
+          const firstName = document.getElementById("firstName");
+          const lastName = document.getElementById("lastName");
+          const email = document.getElementById("email");
+          const phone = document.getElementById("phone");
+          const province = document.getElementById("province");
+          const city = document.getElementById("city");
+          const streetNumber = document.getElementById("streetNumber");
+          const gender = document.getElementById("gender");
+          const amount = document.getElementById("amount");
+
+          firstName.innerText = userObj.firstName;
+          lastName.innerText = userObj.lastName;
+          email.innerText = userObj.email;
+          phone.innerText = userObj.phone;
+          province.innerText = userObj.province;
+          city.innerText = userObj.city;
+          streetNumber.innerText = userObj.streetNumber;
+          gender.innerText = userObj.gender;
+          amount.innerText = userObj.amount;
+        } else {
+          alert("Please login to access this page!");
+          window.location.href = "../index.html";
+        }
+      }
+    </script>
+  </body>
+</html>

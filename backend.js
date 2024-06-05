@@ -16,9 +16,9 @@ app.post("/login", (req, res) => {
   login(email, password).then((result) => {
     console.log(result);
     if (result) {
-      res.json({ message: "Login successful" });
+      res.json({ success: true, user: result, message: "Login successful" });
     } else {
-      res.json({ message: "Login failed" });
+      res.json({ success: true, message: "Login failed" });
     }
   });
 });
@@ -73,9 +73,9 @@ app.post("/signup", (req, res) => {
   ).then((result) => {
     console.log(result);
     if (result) {
-      res.json({ message: "Signup successful" });
+      res.json({ success: true, message: "Signup successful" });
     } else {
-      res.json({ message: "Signup failed" });
+      res.json({ success: false, message: "Signup failed" });
     }
   });
 });
