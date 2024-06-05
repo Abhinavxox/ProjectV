@@ -18,7 +18,7 @@ app.post("/login", (req, res) => {
     if (result) {
       res.json({ success: true, user: result, message: "Login successful" });
     } else {
-      res.json({ success: true, message: "Login failed" });
+      res.json({ success: false, message: "Login failed" });
     }
   });
 });
