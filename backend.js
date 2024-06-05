@@ -25,10 +25,10 @@ app.get("/hello", (req, res) => {
 
 const { Pool } = require("pg");
 const pool = new Pool({
-  user: "postgres",
-  password: "postgres",
-  host: "localhost",
-  database: "varshuDB",
+  user: "projectvdb_user",
+  password: "g6z6eSz0s11iFvuo6smTloG4CjDdl62H",
+  host: "dpg-cpfuqqf79t8c73eaalag-a.singapore-postgres.render.com",
+  database: "projectvdb",
   port: "5432",
 });
 
