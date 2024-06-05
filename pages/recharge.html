@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../global.style.css" />
+    <title>About us</title>
+  </head>
+  <body>
+    <header>
+      <h1 align="center">Welcome to Pre-paid Energy System</h1>
+    </header>
+    <ul class="navbar">
+      <li class="breadcrumb-item">
+        <a href="./home.html">Home</a>
+      </li>
+      <li>
+        <a href="./dashboard.html">Personal Dashboard</a>
+      </li>
+      <li><a href="../index.html">Login</a></li>
+      <li><a href="./aboutus.html">About us</a></li>
+      <li><a href="./recharge.html" style="color: #46b1818a">Recharge</a></li>
+      <li id="datetime"></li>
+    </ul>
+    <br />
+    <br />
+    <br />
+    <div>
+      <h1 class="title">Recharge Dashboard</h1>
+      <br />
+      <div class="rechargeContainer">
+        <form class="rechargeForm" id="rechargeForm">
+          <!-- <label for="contactnumber"><h3>User ID/Contact number:</h3></label>
+          <input type="text" id="contactnumber" name="contactnumber" required />
+          <br /> -->
+          <label for="amount"><h3>Amount:</h3></label>
+          <select id="amount" name="amount" required>
+            <option value="">Select Amount</option>
+            <option value="1000">NPR 1000</option>
+            <option value="2000">NPR 2000</option>
+            <option value="5000">NPR 5000</option>
+            <option value="10000">NPR 10000</option>
+            <option value="15000">NPR 15000</option>
+            <option value="20000">NPR 20000</option>
+          </select>
+          <br />
+          <label for="mode_of_payment"><h3>Mode of Payment</h3></label>
+          <label>
+            <input type="radio" name="mode_of_payment" value="cash" required />
+            Cash </label
+          ><br />
+          <label>
+            <input type="radio" name="mode_of_payment" value="esewa" required />
+            Esewa </label
+          ><br />
+          <label>
+            <input
+              type="radio"
+              name="mode_of_payment"
+              value="khalti"
+              required
+            />
+            Khalti </label
+          ><br />
+          <label>
+            <input type="radio" name="mode_of_payment" value="card" required />
+            Debit card </label
+          ><br />
+          <br />
+          <button
+            type="button"
+            class="btn"
+            style="padding: 10px"
+            onclick="recharge()"
+          >
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <script>
+      // Function to check if user is already logged in
+      function checkLogin() {
+        const user = localStorage.getItem("user");
+        if (user) {
+          return user;
+        } else {
+          alert("Please login to access this page!");
+          window.location.href = "../index.html";
+        }
+      }
+
+      // Recharge function
+      function recharge() {
+        const amount = document.getElementById("amount").value;
+        const modeOfPayment = document.querySelector(
+          'input[name="mode_of_payment"]:checked'
+        )
+          ? document.querySelector('input[name="mode_of_payment"]:checked')
+              .value
+          : null;
+
+        //validate form
+        if (!amount) {
+          alert("Please select amount to recharge!");
+          return;
+        }
+
+        if (!modeOfPayment) {
+          alert("Please select mode of payment!");
+          return;
+        }
+
+        const user = localStorage.getItem("user");
+        const userObj = JSON.parse(user);
+        const email = userObj.email;
+        //send reqeust
+        fetch("http://localhost:3000/recharge", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email,
+            amount,
+          }),
+        })
+          .then((res) => res.json())
+          .then((data) => {
+            fetch("http://localhost:3000/fetchUser", {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                email,
+              }),
+            })
+              .then((res1) => res1.json())
+              .then((data1) => {
+                if (data1.success) {
+                  localStorage.setItem("user", JSON.stringify(data1.user));
+                  alert(`Recharge successful! Your new amount is ${amount}`);
+                  window.location.href = "./dashboard.html";
+                } else {
+                  alert("Recharge failed!");
+                }
+              })
+              .catch((err) => {
+                console.error(err);
+                alert("Recharge failed!");
+              });
+          })
+          .catch((err) => {
+            console.error(err);
+            alert("Recharge failed!");
+          });
+      }
+    </script>
+    <script src="../timestamp.js"></script>
+  </body>
+</html>

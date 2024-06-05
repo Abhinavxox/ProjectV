@@ -78,27 +78,6 @@
         </p>
       </section>
     </main>
-    <script>
-      function updateDateTime() {
-        const dateTimeElement = document.getElementById("datetime");
-        const now = new Date();
-
-        const year = now.getFullYear();
-        const month = String(now.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-        const day = String(now.getDate()).padStart(2, "0");
-
-        const hours = String(now.getHours()).padStart(2, "0");
-        const minutes = String(now.getMinutes()).padStart(2, "0");
-        const seconds = String(now.getSeconds()).padStart(2, "0");
-
-        const formattedDate = `${year}-${month}-${day}`;
-        const formattedTime = `${hours}:${minutes}:${seconds}`;
-
-        dateTimeElement.textContent = `${formattedDate} | ${formattedTime}`;
-      }
-
-      setInterval(updateDateTime, 1000);
-      updateDateTime(); // Initial call to display the date and time immediately
-    </script>
+    <script src="../timestamp.js"></script>
   </body>
 </html>

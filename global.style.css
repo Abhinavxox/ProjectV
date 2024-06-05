@@ -172,6 +172,18 @@ fieldset {
   border-radius: 4%;
 }
 
+/*Recharge CSS */
+.rechargeContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.rechargeForm {
+  display: flex;
+  justify-content: left;
+  flex-direction: column;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);

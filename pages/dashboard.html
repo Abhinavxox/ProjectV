@@ -77,6 +77,7 @@
           const afterLogin = document.getElementById("afterLogin");
 
           const userObj = JSON.parse(user);
+          console.log(userObj);
           const firstName = document.getElementById("firstName");
           const lastName = document.getElementById("lastName");
           const email = document.getElementById("email");
@@ -87,13 +88,13 @@
           const gender = document.getElementById("gender");
           const amount = document.getElementById("amount");
 
-          firstName.innerText = userObj.firstName;
-          lastName.innerText = userObj.lastName;
+          firstName.innerText = userObj.firstname;
+          lastName.innerText = userObj.lastname;
           email.innerText = userObj.email;
-          phone.innerText = userObj.phone;
+          phone.innerText = userObj.contactnumber;
           province.innerText = userObj.province;
           city.innerText = userObj.city;
-          streetNumber.innerText = userObj.streetNumber;
+          streetNumber.innerText = userObj.streetnumber;
           gender.innerText = userObj.gender;
           amount.innerText = userObj.amount;
         } else {

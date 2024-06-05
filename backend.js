@@ -80,6 +80,29 @@ app.post("/signup", (req, res) => {
   });
 });
 
+app.post("/recharge", (req, res) => {
+  const { email, amount } = req.body;
+  let amountNumeric = parseInt(amount);
+  recharge(email, amountNumeric).then((result) => {
+    if (result) {
+      res.json({ success: true, message: "Recharge successful" });
+    } else {
+      res.json({ success: false, message: "Recharge failed" });
+    }
+  });
+});
+
+app.post("/fetchUser", (req, res) => {
+  const { email } = req.body;
+  fetchUser(email).then((result) => {
+    if (result) {
+      res.json({ success: true, user: result });
+    } else {
+      res.json({ success: false });
+    }
+  });
+});
+
 //pg config
 
 const { Pool } = require("pg");
@@ -116,6 +139,17 @@ const getAllUsers = async () => {
   }
 };
 
+const recharge = async (email, amount) => {
+  try {
+    const result = await pool.query(
+      `UPDATE users SET amount = ${amount} WHERE email = '${email}'`
+    );
+    return true;
+  } catch (error) {
+    return false;
+  }
+};
+
 const signup = async (
   firstName,
   lastName,
@@ -148,5 +182,16 @@ const signup = async (
   } catch (error) {
     console.log(error);
     return false;
+  }
+};
+
+const fetchUser = async (email) => {
+  try {
+    const result = await pool.query(
+      `SELECT * FROM users WHERE email = '${email}'`
+    );
+    return result.rows[0];
+  } catch (error) {
+    return error;
   }
 };
