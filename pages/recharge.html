@@ -115,7 +115,7 @@
         const userObj = JSON.parse(user);
         const email = userObj.email;
         //send reqeust
-        fetch("http://localhost:3000/recharge", {
+        fetch("https://projectv-h3e2.onrender.com/recharge", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -127,7 +127,7 @@
         })
           .then((res) => res.json())
           .then((data) => {
-            fetch("http://localhost:3000/fetchUser", {
+            fetch("https://projectv-h3e2.onrender.com/fetchUser", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
