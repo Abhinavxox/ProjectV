@@ -1,26 +1,58 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Login and Signup</title>
+    <title>Pre-paid energy meter using IoT</title>
     <style>
-      body {
-        font-family: Arial, sans-serif;
+      header {
+        background-color: #46b1818a;
+        color: #0f42378e;
+        padding: 20px;
+        text-align: center;
+      }
+      /* Style for the navigation bar */
+      ul.navbar {
+        list-style-type: none;
         margin: 0;
         padding: 0;
+        overflow: hidden;
+        background-color: #333;
         display: flex;
-        justify-content: center;
         align-items: center;
-        height: 100vh;
-        background-color: #f0f0f0;
+        justify-content: center;
       }
-      .container {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+
+      /* Style for the navigation bar items */
+      ul.navbar li {
+        float: left;
       }
+
+      /* Style for the links */
+      ul.navbar li a {
+        display: block;
+        color: white;
+        text-align: center;
+        padding: 14px 16px;
+        text-decoration: none;
+      }
+
+      /* Add spacing between words */
+      ul.navbar li:not(:last-child) {
+        margin-right: 20px; /* Adjust the gap as needed */
+      }
+      fieldset {
+        border: 1px solid rgb(20, 17, 17);
+        width: 400px;
+        float: center;
+        margin: 0 auto;
+      }
+      #datetime {
+        color: white;
+        font-size: 1em;
+        padding: 14px 16px;
+      }
+
       .form-group {
         margin-bottom: 15px;
       }
@@ -35,7 +67,6 @@
       }
       .btn {
         display: inline-block;
-        padding: 10px 15px;
         background-color: #007bff;
         color: white;
         border: none;
@@ -45,27 +76,85 @@
       .btn:hover {
         background-color: #0056b3;
       }
+      #login-form {
+        width: 400px;
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+      }
+      .spinner {
+        display: none;
+        margin: 0 auto;
+        border: 4px solid #f3f3f3;
+        border-radius: 50%;
+        border-top: 4px solid #3498db;
+        width: 10px;
+        height: 10px;
+        animation: spin 2s linear infinite;
+        margin-top: 10px;
+        margin-bottom: 10px;
+      }
+      .loginText {
+        display: block;
+      }
+      .title {
+        width: 100%;
+        text-align: center;
+      }
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
+        }
+        100% {
+          transform: rotate(360deg);
+        }
+      }
+      .error {
+        color: red;
+        display: none;
+      }
     </style>
   </head>
   <body>
-    <div class="container">
-      <h2>Login</h2>
-      <form id="login-form">
-        <div class="form-group">
-          <label for="loginEmail">Email:</label>
-          <input type="email" id="loginEmail" required />
-        </div>
-        <div class="form-group">
-          <label for="loginPassword">Password:</label>
-          <input type="password" id="loginPassword" required />
-        </div>
-        <button type="button" class="btn" onclick="login()">Login</button>
-      </form>
-    </div>
+    <header>
+      <h1 align="center">Welcome to Pre-paid Energy System</h1>
+    </header>
+    <ul class="navbar">
+      <li class="breadcrumb-item"><a href="home.html">Home</a></li>
+      <li><a href="dashboard.php">Personal Dashboard</a></li>
+      <li><a href="login.html" style="color: #46b1818a">Login</a></li>
+      <li><a href="aboutus.html">About us</a></li>
+      <li><a href="recharge.php">Recharge</a></li>
+      <li id="datetime"></li>
+    </ul>
+    <br />
+    <br />
+    <br />
+    <h1 class="title">Login Form:</h1>
+    <form id="login-form">
+      <div class="form-group">
+        <label for="loginEmail">Email:</label>
+        <input type="email" id="loginEmail" required />
+      </div>
+      <div class="form-group">
+        <label for="loginPassword">Password:</label>
+        <input type="password" id="loginPassword" required />
+      </div>
+      <button type="button" class="btn" onclick="login()">
+        <p class="loginText" id="loginText">Login</p>
+        <div class="spinner" id="spinner"></div>
+      </button>
+    </form>
     <script>
       function login() {
         const email = document.getElementById("loginEmail").value;
         const password = document.getElementById("loginPassword").value;
+        const spinner = document.getElementById("spinner");
+        const loginText = document.getElementById("loginText");
+        spinner.style.display = "block";
+        loginText.style.display = "none";
+
         fetch("http://localhost:3000/login", {
           method: "POST",
           headers: {
@@ -75,10 +164,15 @@
         })
           .then((res) => res.json())
           .then((data) => {
+            spinner.style.display = "none";
+            loginText.style.display = "block";
             alert(data.message);
           })
           .catch((err) => {
+            spinner.style.display = "none";
+            loginText.style.display = "block";
             console.log(err);
+            alert(err);
           });
       }
     </script>
