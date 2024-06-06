@@ -44,7 +44,6 @@ app.post("/signup", (req, res) => {
     streetnumber,
     gender,
     email,
-    amount,
   } = req.body;
   // console.log({
   //   firstName: firstName,
@@ -58,7 +57,6 @@ app.post("/signup", (req, res) => {
   //   email: email,
   //   amount: amount,
   // });
-  let amountNumeric = parseInt(amount);
   signup(
     firstName,
     lastName,
@@ -69,7 +67,7 @@ app.post("/signup", (req, res) => {
     streetnumber,
     gender,
     email,
-    amountNumeric
+    0
   ).then((result) => {
     console.log(result);
     if (result) {

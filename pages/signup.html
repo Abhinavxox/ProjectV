@@ -3,127 +3,101 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../global.style.css" />
     <title>Signup</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        margin: 0;
-        padding: 0;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background-color: #f0f0f0;
-      }
-      .container {
-        background: white;
-        padding: 20px;
-        border-radius: 8px;
-        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        width: 300px;
-      }
-      .form-group {
-        margin-bottom: 15px;
-      }
-      .form-group label {
-        display: block;
-        margin-bottom: 5px;
-      }
-      .form-group input,
-      .form-group select {
-        width: 100%;
-        padding: 8px;
-        box-sizing: border-box;
-      }
-      .btn {
-        display: inline-block;
-        padding: 10px 15px;
-        background-color: #007bff;
-        color: white;
-        border: none;
-        cursor: pointer;
-        border-radius: 5px;
-      }
-      .btn:hover {
-        background-color: #0056b3;
-      }
-      .spinner {
-        display: none;
-        margin: 0 auto;
-        border: 4px solid #f3f3f3;
-        border-radius: 50%;
-        border-top: 4px solid #3498db;
-        width: 20px;
-        height: 20px;
-        animation: spin 2s linear infinite;
-      }
-      @keyframes spin {
-        0% {
-          transform: rotate(0deg);
-        }
-        100% {
-          transform: rotate(360deg);
-        }
-      }
-      .error {
-        color: red;
-        display: none;
-      }
-    </style>
   </head>
   <body>
-    <div class="container">
-      <h2>Signup</h2>
-      <form id="signup-form" onsubmit="event.preventDefault(); signup();">
-        <div class="form-group">
-          <label for="firstName">First Name:</label>
-          <input type="text" id="firstName" required />
-        </div>
-        <div class="form-group">
-          <label for="lastName">Last Name:</label>
-          <input type="text" id="lastName" required />
-        </div>
-        <div class="form-group">
-          <label for="email">Email:</label>
-          <input type="email" id="email" required />
-        </div>
-        <div class="form-group">
-          <label for="password">Password:</label>
-          <input type="password" id="password" required />
-        </div>
-        <div class="form-group">
-          <label for="contactnumber">Contact Number:</label>
-          <input type="tel" id="contactnumber" required />
-        </div>
-        <div class="form-group">
-          <label for="province">Province:</label>
-          <input type="text" id="province" required />
-        </div>
-        <div class="form-group">
-          <label for="city">City:</label>
-          <input type="text" id="city" required />
-        </div>
-        <div class="form-group">
-          <label for="streetnumber">Street Number:</label>
-          <input type="text" id="streetnumber" required />
-        </div>
-        <div class="form-group">
-          <label for="gender">Gender:</label>
-          <select id="gender" required>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
-            <option value="Other">Other</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="amount">Amount:</label>
-          <input type="number" id="amount" required />
-        </div>
-        <button type="submit" class="btn">Signup</button>
-        <div class="spinner" id="spinner"></div>
-        <div class="error" id="error-message"></div>
-      </form>
+    <header>
+      <h1 align="center">Welcome to Pre-paid Energy System</h1>
+    </header>
+    <ul class="navbar">
+      <li class="breadcrumb-item">
+        <a href="./home.html">Home</a>
+      </li>
+      <li>
+        <a href="./dashboard.html">Personal Dashboard</a>
+      </li>
+      <li><a href="../index.html">Login</a></li>
+      <li><a href="./signup.html" style="color: #46b1818a">Signup</a></li>
+
+      <li><a href="./aboutus.html">About us</a></li>
+      <li><a href="./recharge.html">Recharge</a></li>
+      <li id="datetime"></li>
+    </ul>
+    <br />
+    <br />
+    <br />
+    <div class="upperContainer">
+      <h1 class="title">Signup</h1>
+      <br />
+      <div class="containerSignup">
+        <form id="signup-form">
+          <div class="form-group">
+            <label for="firstName">First Name:</label>
+            <input type="text" id="firstName" required />
+          </div>
+          <div class="form-group">
+            <label for="lastName">Last Name:</label>
+            <input type="text" id="lastName" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password:</label>
+            <input type="password" id="password" required />
+          </div>
+          <div class="form-group">
+            <label for="contactnumber">Contact Number:</label>
+            <input type="tel" id="contactnumber" required />
+          </div>
+          <div class="form-group">
+            <label for="province">Province:</label>
+            <select id="province" style="width: 100%; height: 40px" required>
+              <option value="">Select Province</option>
+              <option value="Province 1">Province 1</option>
+              <option value="Province 2">Province 2</option>
+              <option value="Province 3">Province 3</option>
+              <option value="Province 4">Province 4</option>
+              <option value="Province 5">Province 5</option>
+              <option value="Province 6">Province 6</option>
+              <option value="Province 7">Province 7</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="city">City:</label>
+            <input type="text" id="city" required />
+          </div>
+          <div class="form-group">
+            <label for="streetnumber">Street Number:</label>
+            <input type="text" id="streetnumber" required />
+          </div>
+          <div class="form-group">
+            <label for="gender">Gender:</label>
+            <select id="gender" style="width: 100%; height: 40px" required>
+              <option value="">Select Gender</option>
+              <option value="Male">Male</option>
+              <option value="Female">Female</option>
+              <option value="Other">Other</option>
+            </select>
+          </div>
+          <div class="buttonSignup">
+            <button
+              type="button"
+              class="btn"
+              style="padding: 20px"
+              onclick="signup()"
+            >
+              Signup
+            </button>
+          </div>
+          <div class="spinner" id="spinner"></div>
+          <div class="error" id="error-message"></div>
+        </form>
+      </div>
     </div>
+
     <script>
       function signup() {
         const firstName = document.getElementById("firstName").value;
@@ -135,7 +109,6 @@
         const city = document.getElementById("city").value;
         const streetnumber = document.getElementById("streetnumber").value;
         const gender = document.getElementById("gender").value;
-        const amount = document.getElementById("amount").value;
 
         const spinner = document.getElementById("spinner");
         const errorMessage = document.getElementById("error-message");
@@ -158,7 +131,6 @@
             city,
             streetnumber,
             gender,
-            amount,
           }),
         })
           .then((res) => res.json())
@@ -180,4 +152,5 @@
       }
     </script>
   </body>
+  <script src="../timestamp.js"></script>
 </html>

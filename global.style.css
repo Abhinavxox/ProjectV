@@ -184,6 +184,31 @@ fieldset {
   flex-direction: column;
 }
 
+/* Singup CSS */
+
+.upperContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-bottom: 40px;
+  width: 100%;
+}
+
+.containerSignup {
+  display: flex;
+  flex-direction: column;
+  width: 30%;
+  justify-content: center;
+}
+
+.buttonSignup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
 @keyframes spin {
   0% {
     transform: rotate(0deg);
