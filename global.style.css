@@ -12,6 +12,23 @@ header {
   padding: 20px;
   text-align: center;
 }
+
+table,
+th,
+td {
+  border: 1px solid black;
+  border-collapse: collapse;
+}
+
+th {
+  padding: 15px;
+}
+
+tr {
+  padding: 20px;
+  text-align: center;
+}
+
 /* Style for the navigation bar */
 ul.navbar {
   list-style-type: none;

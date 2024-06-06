@@ -101,6 +101,16 @@ app.post("/fetchUser", (req, res) => {
   });
 });
 
+app.get("/fetchAllUsers", (req, res) => {
+  fetchAllUsers().then((result) => {
+    if (result) {
+      res.json({ success: true, users: result });
+    } else {
+      res.json({ success: false });
+    }
+  });
+});
+
 //pg config
 
 const { Pool } = require("pg");
@@ -189,6 +199,15 @@ const fetchUser = async (email) => {
       `SELECT * FROM users WHERE email = '${email}'`
     );
     return result.rows[0];
+  } catch (error) {
+    return error;
+  }
+};
+
+const fetchAllUsers = async () => {
+  try {
+    const result = await pool.query(`SELECT * FROM users`);
+    return result.rows;
   } catch (error) {
     return error;
   }
